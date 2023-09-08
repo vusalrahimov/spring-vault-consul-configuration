@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: ms-test
+  cloud:
+    consul:
+      config:
+        enabled: false
+    vault:
+      enabled: false
+db:
+  username: atlas
+  password: pass
+  poolSize: 2

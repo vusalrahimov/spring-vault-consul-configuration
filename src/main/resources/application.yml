@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: ms-test
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      config:
+        data-key: data
+        enabled: true
+        format: yaml
+        fail-fast: true
+    vault:
+      host: localhost
+      port: 8200
+      authentication: token
+      token: vault_token
+      scheme: http
+  config:
+    activate:
+      on-profile:
+        - "!local"
+    import:
+      - "consul:/config/${spring.application.name}/${spring.profiles.active}"
+      - "vault:/secret/${spring.application.name}/${spring.profiles.active}/data"
